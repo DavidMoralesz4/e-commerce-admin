@@ -1,9 +1,15 @@
 import { Request, Response } from "express";
-import { createProdService, IDataProduct } from "../services/productsService";
+import { createProdService } from "../services/productsService";
 
-export const getProductController = (req: Request, res: Response) => {
+export const getProductController = async(_: Request, res: Response) => {
   try {
-  } catch (error) {}
+    
+
+} catch (error: unknown) {
+    if (error instanceof Error) {
+      res.status(500).json({ success: false, message: error.message });
+    }
+  }
 };
 
 export const createProdController = async (req: Request, res: Response) => {

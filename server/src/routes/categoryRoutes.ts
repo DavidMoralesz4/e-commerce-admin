@@ -1,11 +1,11 @@
 import {Router} from "express";
 import { createCategoryController, getCategoryController } from "../controllers/categoryControllers";
 
-export const productsRoutes: Router = Router();
+export const categoryRoutes: Router = Router();
 
 
 //// Ruta para obtener las categorias \\\
-productsRoutes.get('/categories', getCategoryController)
+categoryRoutes.get('/categories', getCategoryController)
 
 //// Ruta para crear una categorias \\\
-productsRoutes.post('/categories', createCategoryController)
+categoryRoutes.post('/categories', createCategoryController)
