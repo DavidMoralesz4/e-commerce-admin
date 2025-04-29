@@ -1,5 +1,7 @@
-import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { Color } from "./Color"
+import { Brand } from "./Brand"
+import { Category } from "./Category"
 
 @Entity({
     name: "products"
@@ -28,6 +30,13 @@ export class Product {
     
     @OneToMany(() => Color, (color) => color.product)
     colors: Color[] // Son varios colores - por eso utilizo un array
+
+    @ManyToOne(() => Brand, (brand) => brand.products)
+    brand: Brand
+
+    @ManyToOne(() => Category, (catgegory) => catgegory.product)
+    category: Category
+
 }
 
 
