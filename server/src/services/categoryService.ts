@@ -4,11 +4,7 @@ import { CategoryModel } from "../database/data-source";
 
 export const getCategoryService = async () => {
   try {
-    const categories = await CategoryModel.find({
-        relations: {
-            product: true
-        }
-    });
+    const categories = await CategoryModel.find();
 
     return categories;
   } catch (error: unknown) {
