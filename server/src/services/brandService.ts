@@ -16,7 +16,7 @@ export const createBrandService = async (marca: string) => {
 
     const newBrand = await BrandModel.create({
       name: marca,
-    });
+    }); 
 
     return await BrandModel.save(newBrand);
   } catch (error: unknown) {

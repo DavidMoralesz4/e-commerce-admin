@@ -77,6 +77,18 @@ export const createProdService = async ({
     });
 
     return await ProductModel.save(product);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+  }
+};
+
+export const getProductsService = async () => {
+  try {
+    const allProducts = await ProductModel.find();
+    
+    return allProducts;
 
   } catch (error: unknown) {
     if (error instanceof Error) {

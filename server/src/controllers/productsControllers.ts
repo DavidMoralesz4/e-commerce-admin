@@ -1,11 +1,23 @@
 import { Request, Response } from "express";
-import { createProdService } from "../services/productsService";
+import {
+  createProdService,
+  getProductsService,
+} from "../services/productsService";
 
-export const getProductController = async(_: Request, res: Response) => {
+export const getProductController = async (_: Request, res: Response) => {
   try {
-    
+    const allProducts = await getProductsService();
 
-} catch (error: unknown) {
+    if (!allProducts?.length) {
+      res.status(204).json({ message: "No hay productos!!." });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Todos los productos",
+      data: allProducts,
+    });
+  } catch (error: unknown) {
     if (error instanceof Error) {
       res.status(500).json({ success: false, message: error.message });
     }
