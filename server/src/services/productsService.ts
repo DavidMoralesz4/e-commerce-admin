@@ -86,7 +86,13 @@ export const createProdService = async ({
 
 export const getProductsService = async () => {
   try {
-    const allProducts = await ProductModel.find();
+    const allProducts = await ProductModel.find({
+      relations: {
+        brand: true,
+        category: true,
+        colors: true
+      }
+    });
     
     return allProducts;
 

@@ -8,8 +8,9 @@ export const getProductController = async (_: Request, res: Response) => {
   try {
     const allProducts = await getProductsService();
 
-    if (!allProducts?.length) {
+    if (allProducts?.length == null) {
       res.status(204).json({ message: "No hay productos!!." });
+      return
     }
 
     res.status(200).json({
