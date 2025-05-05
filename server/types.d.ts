@@ -1,9 +1,9 @@
 import 'express'
 
-declare global {   // Amplía los tipos de Express
+declare global {   
     namespace Express {
-        interface Request {  // Agrega estas propiedades al objeto `req`
-            userId?: string;  // El `?` significa "opcional" (puede no estar)
+        interface Request {
+            userId?: string; 
         }
     }
 }

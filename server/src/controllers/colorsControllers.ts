@@ -1,10 +1,15 @@
 import { Request, Response } from "express";
-import { createColorsService } from "../services/colorsService";
+import { createColorsService, getColorsService } from "../services/colorsService";
 
-export const getColorsController = (req: Request, res: Response) => {
+export const getColorsController = async(req: Request, res: Response) => {
   try {
-        
+      const allColors = await getColorsService();
 
+      res.status(200).json({
+        success: true,
+        message: 'Colores',
+        data: allColors
+      })
   } catch (error) {
 
   }
