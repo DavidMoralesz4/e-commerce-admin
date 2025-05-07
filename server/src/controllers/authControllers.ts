@@ -5,10 +5,12 @@ export const loginController = async(req: Request, res: Response) => {
     const {email, password} = req.body
 
     try {
-        const {token, user} =  await loginService(email, password);
+        const { token, user } = await loginService(email, password);
 
         res.cookie('tokenkeysecret', token, {
-            httpOnly: true
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
         })
 
         res.status(200).json({
