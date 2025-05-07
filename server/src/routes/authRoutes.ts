@@ -3,7 +3,7 @@ import { loginController, logoutController, registerController } from '../contro
 
 export const authRoutes = Router();
 
-authRoutes.get('/login', loginController);
+authRoutes.post('/login', loginController);
 
 authRoutes.post('/register', registerController);
 
