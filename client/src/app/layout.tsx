@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
+import { Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 
-const geistSans = Geist({
+const josefin_Sans = Josefin_Sans({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const instrument_Sans = Instrument_Sans({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
 });
+
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${josefin_Sans.className} ${instrument_Sans.className} antialiased`}
       >
         <Providers>{children}</Providers>
       </body>

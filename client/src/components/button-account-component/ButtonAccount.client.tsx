@@ -15,7 +15,7 @@ export default function ButtonAccountClient({ session }: any) {
 
   return (
     <>
-      <span className="flex bg-[#C84D00] rounded-[10px] hover:bg-orange-600 px-3 items-center p-1 cursor-pointer" onClick={handleLogout}>
+      <span className="flex bg-orange-600 rounded-[10px] hover:bg-orange-500 px-3 items-center p-1 cursor-pointer" onClick={handleLogout}>
         <div className="">
           <RiAccountCircle2Fill size={37} color="#C4C4C4" />
         </div>
@@ -27,7 +27,6 @@ export default function ButtonAccountClient({ session }: any) {
             {session?.user.email}
           </p>
         </div>
-
         <div className="px-6 flex flex-col justify-center items-center">
           <FaChevronUp size={12} color="#C4C4C4" />
           <FaChevronDown size={12} color="#C4C4C4" />
