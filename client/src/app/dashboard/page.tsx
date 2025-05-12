@@ -1,9 +1,8 @@
-import AddProductComponent from "@/components/AddProductComponent";
-import SearchComponent from "@/components/SearchComponent";
-import React from "react";
-import SideCategory from "./sideCategory/SideCategory";
 import { auth } from "@/auth";
+import AddProductComponent from "@/components/AddProductComponent";
 import ProductCard from "@/components/product-card-component/ProductCard";
+import SearchComponent from "@/components/SearchComponent";
+import SideCategory from "./sideCategory/SideCategory";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -13,38 +12,41 @@ export default async function DashboardPage() {
   }
 
   return (
-    <>
-      <div className="w-full px-4 md:px-2">
-        <h1 className="text-2xl font-semibold mb-4 text-black">
-          Tu Inventario
-        </h1>
+    <div className="w-full px-4 md:px-2">
+      <h1 className="text-2xl font-semibold mb-4 text-black hidden md:flex">Tu Inventario</h1>
+      <p className="text-black mb-5 hidden md:flex">Todos los productos</p>
 
-        {/* <div className="absolute left-237 top-[50px] z-50 md:left-237 xl:left-360 xl:top-[70px]">
-          <SideCategory />
-        </div> */}
+      <h1 className="text-2xl font-semibold mb-4 text-black text-center md:hidden">Tu Inventario</h1>
+      <p className="text-black mb-5 text-center md:hidden">Todos los productos</p>
 
-        <p className="text-black mb-5">Todos los productos</p>
-        <div className="flex flex-col lg:flex-row gap-6">
-          <div className="">
-            <div className="flex flex-col md:flex-row gap-4 items-start ">
-              <SearchComponent />
-              <AddProductComponent />
-            </div>
+
+      <div className="flex flex-col lg:flex-row gap-6">
+        <div className="flex-1">
+          {/* Filtros y botón */}
+          <div className="flex flex-col md:flex-row gap-4">
+            <SearchComponent />
+            <AddProductComponent />
+            <AddProductComponent />
+          </div>
+          
+          {/* TODO: Ajustar el contenedor de productos con scroll (cards) */}
+          {/* Productos */}
+          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 mt-10 gap-4 ">
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
           </div>
         </div>
 
-        <div className="grid grid-cols-4 mt-10 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-          {/* Listar Productos */}
-          <ProductCard/>
-          <ProductCard/>
-          <ProductCard/>
-          <ProductCard/>
-          <ProductCard/>
-          <ProductCard/>
-          <ProductCard/>
-
-        </div>
+        {/* Sidebar de categorías */}
+        {/* <div className="w-full lg:w-64">
+          <SideCategory />
+        </div> */}
       </div>
-    </>
+    </div>
   );
 }

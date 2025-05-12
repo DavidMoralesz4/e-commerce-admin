@@ -1,14 +1,13 @@
 import React, { ReactNode } from "react";
 import SideBar from "./sidebar/SideBar";
-import SideCategory from "./sideCategory/SideCategory";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
+
   return (
-    <div className="flex min-h-screen bg-gray-950">
+     <div className="flex bg-gray-950 min-h-screen">
       <SideBar />
-      <main className="flex bg-gray-100 p-8 m-2 rounded-[5px] w-auto">
-        {children}
-        <SideCategory />
+      <main className="flex flex-1 bg-gray-100 px-10 md:px-7 pt-8 md:p-10 m-2 rounded-[5px] ml-0 md:ml-64">
+        <div className="flex-1">{children}</div>
       </main>
     </div>
   );

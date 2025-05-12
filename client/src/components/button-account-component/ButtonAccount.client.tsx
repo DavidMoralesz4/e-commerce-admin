@@ -15,11 +15,11 @@ export default function ButtonAccountClient({ session }: any) {
 
   return (
     <>
-      <span className="flex bg-orange-600 rounded-[10px] hover:bg-orange-500 px-3 items-center p-1 cursor-pointer" onClick={handleLogout}>
+      <span className="flex bg-orange-600 rounded-[10px] hover:bg-orange-500 md:px-3 items-center p-1 cursor-pointer" onClick={handleLogout}>
         <div className="">
           <RiAccountCircle2Fill size={37} color="#C4C4C4" />
         </div>
-        <div className="px-3 flex flex-col ">
+        <div className="px-3 md:flex md:flex-col hidden">
           <p className="text-[#7B2B00] text-[15px] font-semibold relative top-[2px]">
             {session?.user.name}
           </p>
@@ -27,14 +27,14 @@ export default function ButtonAccountClient({ session }: any) {
             {session?.user.email}
           </p>
         </div>
-        <div className="px-6 flex flex-col justify-center items-center">
+        <div className="px-6 md:flex md:flex-col md:justify-center md:items-center hidden">
           <FaChevronUp size={12} color="#C4C4C4" />
           <FaChevronDown size={12} color="#C4C4C4" />
         </div>
       </span>
 
       {logout && (
-        <div className="absolute bottom-[37px] left-60 bg-white shadow-lg rounded-md p-2 w-[300px] z-50">
+        <div className="absolute w-40 bottom-[35px] left-12 md:bottom-[37px] md:left-62 bg-white shadow-lg rounded-md p-2 md:w-[300px] z-50">
         <button
           onClick={() => signOut()}
           className="w-full text-left p-2 hover:bg-gray-100 text-red-600"
