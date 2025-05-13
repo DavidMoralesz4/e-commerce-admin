@@ -7,9 +7,17 @@ import cookieParser from 'cookie-parser'
 import { authRoutes } from "./routes/authRoutes";
 import { brandRoutes } from "./routes/brandRoutes";
 import { colorsRoutes } from "./routes/colorsRoutes";
-
+import cors from 'cors'
 
 export const server = express();
+
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true, 
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+server.use(cors(corsOptions));
 
 //// Middlewares \\\\
 server.use(morgan("dev"));
