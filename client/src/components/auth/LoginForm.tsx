@@ -1,9 +1,10 @@
 "use client";
 
+import { useLoginUserMutation } from "@/services/authApi";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { signIn } from "next-auth/react";
+
 
 interface Inputs {
   email: string;
@@ -11,7 +12,10 @@ interface Inputs {
 }
 
 export default function LoginForm() {
+
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
+
+  const [loginUser] = useLoginUserMutation();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -21,15 +25,17 @@ export default function LoginForm() {
     setError(null);
     
     try {
-      const response = await signIn("credentials", {
+      const response = await loginUser({
         email: data.email,
-        password: data.password,
-        redirect: false,
-      });
+        password: data.password
+      }).unwrap();
+      
+      console.log(response);
+      
 
-      if (response?.error) {
+      if (!response.success) {
         setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
-        console.error("Error de autenticación:", response.error);
+        console.error("Error de autenticación:", response.message);
         return;
       }
 
@@ -39,6 +45,7 @@ export default function LoginForm() {
     } catch (err) {
       setError("Ocurrió un error inesperado. Por favor, inténtalo más tarde.");
       console.error("Error:", err);
+      // dispatch(setFailed());
     } finally {
       setLoading(false);
     }

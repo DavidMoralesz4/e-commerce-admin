@@ -4,12 +4,12 @@ import { RiAccountCircle2Fill } from "react-icons/ri";
 import { FaChevronUp } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 import { useState } from "react";
-import { signOut } from "next-auth/react";
 
-export default function ButtonAccountClient({ session }: any) {
+export default function ButtonAccountClient() {
   const [logout, setLogout] = useState(false);
-
-  const handleLogout = () => {
+  
+  
+const handleLogout = () => {
     setLogout(!logout);
   };
 
@@ -21,10 +21,10 @@ export default function ButtonAccountClient({ session }: any) {
         </div>
         <div className="px-3 md:flex md:flex-col hidden">
           <p className="text-[#7B2B00] text-[15px] font-semibold relative top-[2px]">
-            {session?.user.name}
+            {/* {session} */}
           </p>
           <p className="text-[12px] relative top-[-3px] font-sans">
-            {session?.user.email}
+            {/* {session} */}
           </p>
         </div>
         <div className="px-6 md:flex md:flex-col md:justify-center md:items-center hidden">
@@ -36,7 +36,6 @@ export default function ButtonAccountClient({ session }: any) {
       {logout && (
         <div className="absolute w-40 bottom-[35px] left-12 md:bottom-[37px] md:left-62 bg-white shadow-lg rounded-md p-2 md:w-[300px] z-50">
         <button
-          onClick={() => signOut()}
           className="w-full text-left p-2 hover:bg-gray-100 text-red-600"
         >
           Cerrar sesión

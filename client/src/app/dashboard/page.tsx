@@ -1,14 +1,9 @@
-import { auth } from "@/auth";
 import ProductCard from "@/components/product-card-component/ProductCard";
 import SearchComponent from "@/components/SearchComponent";
 import ShowForm from "@/components/show-create-form-product/ShowForm";
 
 export default async function DashboardPage() {
-  const session = await auth();
 
-  if (!session) {
-    return <div>No autorizado</div>;
-  }
 
   return (
     <div className="w-full px-4 md:px-2">

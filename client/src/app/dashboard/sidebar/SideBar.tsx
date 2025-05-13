@@ -1,4 +1,4 @@
-import ButtonAccountServer from "@/components/button-account-component/ButtonAccount.server";
+import ButtonAccountClient from "@/components/button-account-component/ButtonAccount.client";
 import NavSection from "@/components/nav-section-component/NavSection";
 import React from "react";
 
@@ -11,7 +11,7 @@ export default function SideBar() {
         <NavSection />
       </div>
       <div className="mt-auto mb-4">
-        <ButtonAccountServer />
+        <ButtonAccountClient />
       </div>
     </aside>
   );
