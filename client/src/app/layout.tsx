@@ -3,6 +3,7 @@ import { Josefin_Sans } from "next/font/google";
 import { Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import { Toaster } from "sonner";
 
 const josefin_Sans = Josefin_Sans({
   variable: "--font-geist-sans",
@@ -13,8 +14,6 @@ const instrument_Sans = Instrument_Sans({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
-
-
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -31,6 +30,7 @@ export default function RootLayout({
       <body
         className={`${josefin_Sans.className} ${instrument_Sans.className} antialiased`}
       >
+        <Toaster />
         <Providers>{children}</Providers>
       </body>
     </html>

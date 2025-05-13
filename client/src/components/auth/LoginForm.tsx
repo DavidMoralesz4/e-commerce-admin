@@ -1,9 +1,12 @@
 "use client";
 
+import { useLoginUserMutation } from "@/services/authApi";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { signIn } from "next-auth/react";
+import { toast } from "sonner";
+import { loginUserState, setFailed, setLoading, logout } from "../../features/auth/authSlice";
+import { useDispatch } from "react-redux";
 
 interface Inputs {
   email: string;
@@ -11,7 +14,10 @@ interface Inputs {
 }
 
 export default function LoginForm() {
+
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
+  const dispatch = useDispatch()
+  const [loginUser] = useLoginUserMutation();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -21,15 +27,19 @@ export default function LoginForm() {
     setError(null);
     
     try {
-      const response = await signIn("credentials", {
+      const response = await loginUser({
         email: data.email,
-        password: data.password,
-        redirect: false,
-      });
+        password: data.password
+      }).unwrap();
 
-      if (response?.error) {
+      dispatch(loginUserState({user: response.data}))
+      
+      toast.success(response.message)
+
+      if (!response.success) {
         setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
-        console.error("Error de autenticación:", response.error);
+        console.error("Error de autenticación:", response.message);
+        toast.error(response.message)
         return;
       }
 
@@ -38,7 +48,8 @@ export default function LoginForm() {
       router.refresh();
     } catch (err) {
       setError("Ocurrió un error inesperado. Por favor, inténtalo más tarde.");
-      console.error("Error:", err);
+      dispatch(setFailed());
+      toast.error('Algo anda mal')
     } finally {
       setLoading(false);
     }

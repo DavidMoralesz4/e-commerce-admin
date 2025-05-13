@@ -1,49 +1,3 @@
-// import Image from "next/image";
-// import React from "react";
-// import CancelBtn from "../cancel-button-component/CancelBtn";
-
-// export default function ProductCard() {
-//   return (
-//     <div className="flex flex-col w-auto h-[350px] bg-[#FFFFFF] shadow-sm rounded-[5px] border border-gray-300 lg:w-[240px]">
-//       <CancelBtn />
-//       <div className="flex items-center justify-center">
-//         <Image
-//           src="https://www.moov.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dw76f76351/products/NIDC0774-141/NIDC0774-141-1.JPG"
-//           alt="productoFoto.png"
-//           width={220}
-//           height={90}
-//           className="lg:w-[240px] lg:h-[220px]"
-//         />
-//       </div>
-//       <div className="p-2 h-48">
-//         <div>
-//           <div className="flex justify-between">
-//           <strong className="text-black">Title</strong>
-//             <div className="text-black">blue</div>
-//             <div className="text-black">white</div>
-//             <div className="text-black">black</div>
-//           </div>
-//           <p className="text-black">description</p>
-//         </div>
-//         <hr />
-//         <div className="flex justify-center items-center">
-//           <div>
-//             <p className="text-black">Precio</p>
-//             <strong className="text-black">1200</strong>
-//           </div>
-//           <div>
-//             <p className="text-black">Marca</p>
-//             <strong className="text-black">Nike</strong>
-//           </div>
-//           <div>
-//             <p className="text-black">Stock</p>
-//             <strong className="text-black">20</strong>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
 import Image from "next/image";
 import CancelBtn from "../cancel-button-component/CancelBtn";
 
@@ -57,9 +11,12 @@ import CancelBtn from "../cancel-button-component/CancelBtn";
 //   onClose?: () => void;
 // };
 
+
+/* TODO: Ajustar responsive para productos. El producto cambiara un poco su tamano dependiendo de la pantalla */
+
 const ProductCard = () => {
   return (
-    <div className="relative max-w-sm w-full xl:w-[250px] bg-[#FFFFFF] rounded-[5px] shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+    <div className="relative max-w-sm w-full xl:w-[250px] bg-[#FFFFFF] rounded-[5px] shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer ">
         <CancelBtn/>
       <div className="flex justify-center p-4">
         <Image

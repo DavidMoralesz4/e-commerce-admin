@@ -32,7 +32,7 @@ export default function NavSection() {
               path === "/dashboard" ? activeStyle : hoverStyle
             } `}
           />
-          <span>Productos</span>
+          <span className="hidden md:flex md:w-40">Productos</span>
         </Link>
       </div>
 
@@ -49,7 +49,7 @@ export default function NavSection() {
               path === "/dashboard/orders" ? activeStyle : hoverStyle
             } `}
           />
-          Ventas
+          <span className="hidden md:flex">Ventas</span>
         </Link>
       </div>
     </nav>

@@ -9,13 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.8.1",
     "axios": "^1.9.0",
     "next": "15.3.1",
-    "next-auth": "^5.0.0-beta.27",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.56.2",
-    "react-icons": "^5.5.0"
+    "react-icons": "^5.5.0",
+    "react-redux": "^9.2.0",
+    "sonner": "^2.0.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
