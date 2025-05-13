@@ -4,9 +4,12 @@ import { RiAccountCircle2Fill } from "react-icons/ri";
 import { FaChevronUp } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 export default function ButtonAccountClient() {
   const [logout, setLogout] = useState(false);
+  const user = useSelector((state: RootState) => state.auth.user)
   
   
 const handleLogout = () => {
@@ -21,10 +24,10 @@ const handleLogout = () => {
         </div>
         <div className="px-3 md:flex md:flex-col hidden">
           <p className="text-[#7B2B00] text-[15px] font-semibold relative top-[2px]">
-            {/* {session} */}
+            {user?.firstName}
           </p>
           <p className="text-[12px] relative top-[-3px] font-sans">
-            {/* {session} */}
+            {user?.email}
           </p>
         </div>
         <div className="px-6 md:flex md:flex-col md:justify-center md:items-center hidden">
