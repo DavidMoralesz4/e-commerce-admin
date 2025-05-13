@@ -1,8 +1,7 @@
 import { auth } from "@/auth";
-import AddProductComponent from "@/components/AddProductComponent";
 import ProductCard from "@/components/product-card-component/ProductCard";
 import SearchComponent from "@/components/SearchComponent";
-import SideCategory from "./sideCategory/SideCategory";
+import ShowForm from "@/components/show-create-form-product/ShowForm";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -25,8 +24,7 @@ export default async function DashboardPage() {
           {/* Filtros y botón */}
           <div className="flex flex-col md:flex-row gap-4">
             <SearchComponent />
-            <AddProductComponent />
-            <AddProductComponent />
+            <ShowForm />
           </div>
           
           {/* TODO: Ajustar el contenedor de productos con scroll (cards) */}
