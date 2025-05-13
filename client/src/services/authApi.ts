@@ -14,7 +14,7 @@ interface User {
 interface DataResponse {
     success: boolean
     message: string
-    data: User[]
+    data?: User[]
 }
 
 interface CredentialsRequest {
@@ -35,8 +35,16 @@ export const authApi = createApi({
                     method: "POST"
                 }
             }
+        }),
+        logoutUser: builder.mutation<DataResponse, void>({
+            query: () => {
+                return {
+                    url: '/logout',
+                    credentials: "include"
+                }
+            }
         })
     })
 })
 
-export const { useLoginUserMutation } = authApi
+export const { useLoginUserMutation, useLogoutUserMutation } = authApi

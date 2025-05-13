@@ -8,7 +8,6 @@ import { toast } from "sonner";
 import { loginUserState, setFailed, setLoading, logout } from "../../features/auth/authSlice";
 import { useDispatch } from "react-redux";
 
-
 interface Inputs {
   email: string;
   password: string;

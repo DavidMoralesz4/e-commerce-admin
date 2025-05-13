@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+// import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface User {
   id: number;
@@ -45,7 +45,7 @@ export const authSlice = createSlice({
     setLoading: (state) => {
       state.status = "loading";
     },
-    
+
     setFailed: (state) => {
       state.status = "failed";
     },
