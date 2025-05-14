@@ -7,4 +7,4 @@ authRoutes.post('/login', loginController);
 
 authRoutes.post('/register', registerController);
 
-authRoutes.get('/logout', logoutController)
+authRoutes.post('/logout', logoutController)

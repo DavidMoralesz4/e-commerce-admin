@@ -50,7 +50,7 @@ export const registerController = async(req: Request, res: Response) => {
     }
 }
 
-export const logoutController = (req: Request, res: Response) => {
+export const logoutController = (_: Request, res: Response) => {
     try {
         res.clearCookie('tokenkeysecret')
         res.status(200).json({
