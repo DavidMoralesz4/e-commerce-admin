@@ -8,11 +8,11 @@ import { Color } from "../entities/Color";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: "localhost",
-    port: 5432,
-    username: "postgres",
-    password: env.passwordDb,
-    database: "ecommerce_admin",
+    host: env.hostPg,
+    port: Number(env.portPg),
+    username: env.userPg,
+    password: env.passwordPg,
+    database: env.databasePg,
     synchronize: true,
     logging: false,
     entities: [Product, User, Category, Brand, Color],
