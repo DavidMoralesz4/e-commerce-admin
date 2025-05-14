@@ -12,7 +12,7 @@ import cors from 'cors'
 export const server = express();
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: ['http://localhost:3000', 'https://ecommerce-admin-client-production.up.railway.app'],
   credentials: true, 
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
