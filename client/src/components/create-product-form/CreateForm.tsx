@@ -1,76 +1,78 @@
-'use client'
+"use client";
 import {
-  getBrands,
-  getCategories,
-  getColors,
-} from "@/services/productOptionsService";
-import { createProduct } from "@/services/productService";
+  useCreateProductsMutation,
+  useGetBrandsQuery,
+  useGetCategoriesQuery,
+  useGetColorsQuery,
+} from "@/services/productApi";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IoWarning } from "react-icons/io5";
+import { toast } from "sonner";
 
-type CreateProd = {
+interface Brand {
+  id: number;
+  name: string;
+}
+
+interface Category {
+  id: number;
+  name: string;
+}
+
+interface Colors {
+  id: number;
+  name: string;
+}
+
+interface CredentialsRequest {
   name: string;
   image: string;
   description: string;
   stock: number;
   price: number;
-  colors: number[];
-  brand: number;
-  category: number;
-};
+  colors: Colors[];
+  brand: Brand;
+  category: Category;
+}
 
-export default function CreateForm() {
-  const { register, handleSubmit } = useForm<CreateProd>();
+export default function CreateForm({ onClose }: { onClose: () => void }) {
+  const { register, handleSubmit, reset } = useForm<CredentialsRequest>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [createProduct] = useCreateProductsMutation();
+  const { data: brandData } = useGetBrandsQuery();
+  const { data: categoryData } = useGetCategoriesQuery();
+  const { data: colorData } = useGetColorsQuery();
 
-  const [brands, setBrands] = useState([]);
-  const [colors, setColors] = useState([]);
-  const [categories, setCategories] = useState([]);
-
-  const onSubmit: SubmitHandler<CreateProd> = async (data) => {
+  const onSubmit: SubmitHandler<CredentialsRequest> = async (data) => {
     setLoading(true);
     setError(null);
 
     try {
-      const payload = {
-        ...data,
-        stock: Number(data.stock),
-        price: Number(data.price),
-        colors: Number(data.colors[0]),
-        brand: Number(data.brand),
-        category: Number(data.category),
-      };
+      const fixedData = {
+      ...data,
+      brand: JSON.parse(data.brand as unknown as string),
+      category: JSON.parse(data.category as unknown as string),
+      colors: Array.isArray(data.colors)
+        ? data.colors.map((c: any) => JSON.parse(c))
+        : [],
+    };
 
-      await createProduct(payload);
-      alert("Producto creado correctamente ✅");
+      const response = await createProduct(fixedData);
+      console.log("Raw response:", response);
+      console.log(response.data?.message);
+      console.log(response.data?.data);
+      
+      toast.success(response.data?.message)
+      reset()
+      onClose();
     } catch (err: any) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    const fetchOptions = async () => {
-      try {
-        const [brandsData, colorsData, categoriesData] = await Promise.all([
-          getBrands(),
-          getColors(),
-          getCategories(),
-        ]);
-        setBrands(brandsData);
-        console.log(brandsData);
-        setColors(colorsData);
-        setCategories(categoriesData);
-      } catch (err) {
-        console.error("Error al cargar opciones:", err);
-      }
-    };
-
-    fetchOptions();
-  }, []);
 
   return (
     <form
@@ -115,10 +117,11 @@ export default function CreateForm() {
             <label htmlFor="">Color</label>
             <select
               {...register("colors")}
+              multiple
               className="bg-[#D9D9D9] w-32 rounded-[5px] text-black px-2"
             >
               <option value="">Seleccione</option>
-              {colors.map((color: any) => (
+              {colorData?.data?.map((color) => (
                 <option key={color.id} value={color.id}>
                   {color.name}
                 </option>
@@ -132,7 +135,7 @@ export default function CreateForm() {
               className="bg-[#D9D9D9] w-32 rounded-[5px] text-black px-2"
             >
               <option value="">Seleccione</option>
-              {brands.map((brand: any) => (
+              {brandData?.data?.map((brand) => (
                 <option key={brand.id} value={brand.id}>
                   {brand.name}
                 </option>
@@ -168,7 +171,7 @@ export default function CreateForm() {
               className="bg-[#D9D9D9] w-32 rounded-[5px] text-black px-2"
             >
               <option value="">Seleccione</option>
-              {categories.map((category: any) => (
+              {categoryData?.data?.map((category) => (
                 <option key={category.id} value={category.id}>
                   {category.name}
                 </option>

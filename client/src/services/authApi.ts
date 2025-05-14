@@ -40,7 +40,8 @@ export const authApi = createApi({
             query: () => {
                 return {
                     url: '/logout',
-                    credentials: "include"
+                    credentials: "include",
+                    method: "POST"
                 }
             }
         })
