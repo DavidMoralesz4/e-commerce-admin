@@ -9,10 +9,10 @@ export const loginController = async (req: Request, res: Response) => {
 
     res.cookie("tokenkeysecret", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // Solo en producción
-      sameSite: "lax", // o 'none' si haces cross-site y configuras bien
+      secure: true, // solo si está en HTTPS, como ahora
+      sameSite: "none", // <--- obligatorio para cross-site
       path: "/",
-      maxAge: 1000 * 60 * 60 * 24,
+      maxAge: 1000 * 60 * 60 * 24 * 7,
     });
 
     res.status(200).json({
