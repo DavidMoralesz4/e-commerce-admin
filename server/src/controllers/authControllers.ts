@@ -9,8 +9,8 @@ export const loginController = async(req: Request, res: Response) => {
 
         res.cookie('tokenkeysecret', token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
+            secure: true,
+            sameSite: "none",
         })
 
         res.status(200).json({
