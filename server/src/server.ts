@@ -11,13 +11,6 @@ import cors from 'cors'
 
 export const server = express();
 
-// const corsOptions = {
-//   origin: ['http://localhost:3000', 'https://ecommerce-admin-client.vercel.app'],
-//   credentials: true, 
-//   methods: ['GET', 'POST'],
-//   allowedHeaders: ['Content-Type', 'Authorization'],
-// };
-
 const corsOptions = {
   origin: [
     'http://localhost:3000',
@@ -25,8 +18,9 @@ const corsOptions = {
     'https://ecommerce-admin-client-git-main-zdavid-44s-projects.vercel.app'
   ],
   credentials: true,
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Añade todos los métodos necesarios
+  allowedHeaders: ['Content-Type', 'Authorization', 'Set-Cookie'],
+  exposedHeaders: ['Set-Cookie']
 };
 
 server.use(cors(corsOptions));
