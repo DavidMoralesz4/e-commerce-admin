@@ -8,7 +8,7 @@ export const loginController = async (req: Request, res: Response) => {
     const { token, user } = await loginService(email, password);
 
     res.cookie("tokenkeysecret", token, {
-      httpOnly: true,
+      httpOnly: false,
       secure: process.env.NODE_ENV === "production", // ✅ true solo en producción
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // ✅ "none" en prod, "lax" en dev
       path: "/",
