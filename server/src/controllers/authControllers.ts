@@ -11,7 +11,7 @@ export const loginController = async (req: Request, res: Response) => {
       httpOnly: false,
       secure: process.env.NODE_ENV === "production", // ✅ true solo en producción
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // ✅ "none" en prod, "lax" en dev
-      path: "/",
+      // path: "/",
       maxAge: 1000 * 60 * 60 * 24 * 7,
     });
 
