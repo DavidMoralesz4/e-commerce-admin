@@ -9,10 +9,10 @@ export const loginController = async (req: Request, res: Response) => {
 
     res.cookie("tokenkeysecret", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // ✅ true solo en producción
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // ✅ "none" en prod, "lax" en dev
-      path: "/",
-      maxAge: 1000 * 60 * 60 * 24 * 7,
+      secure: true, // Solo en HTTPS
+      sameSite: "none", // Necesario para cross-site
+      domain: ".railway.app", // O tu dominio personalizado
+      maxAge: 24 * 60 * 60 * 1000, // 1 día
     });
 
     res.status(200).json({
