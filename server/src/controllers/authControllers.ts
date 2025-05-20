@@ -11,8 +11,7 @@ export const loginController = async (req: Request, res: Response) => {
       httpOnly: true,
       secure: true,
       sameSite: "none",
-      // Usa el dominio específico del backend o omítelo si están en dominios diferentes
-      domain: "e-commerce-admin-production-8195.up.railway.app",
+      path: "/",
       maxAge: 24 * 60 * 60 * 1000,
     });
 
