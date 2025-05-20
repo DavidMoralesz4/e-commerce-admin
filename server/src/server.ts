@@ -16,7 +16,7 @@ const corsOptions = {
   origin: [
     "http://localhost:3000",
     "https://ecommerce-admin-client-production.up.railway.app",
-    "https://e-commerce-admin-production-8195.up.railway.app"
+    "https://ecommerce-admin-server-production.up.railway.app"
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
