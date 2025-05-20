@@ -11,12 +11,10 @@ import cors from "cors";
 
 export const server = express();
 
-// En server.ts actualiza corsOptions:
 const corsOptions = {
   origin: [
     "http://localhost:3000",
     "https://ecommerce-admin-client-production.up.railway.app",
-    "https://ecommerce-admin-server-production.up.railway.app"
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
