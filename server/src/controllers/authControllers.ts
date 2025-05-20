@@ -9,10 +9,11 @@ export const loginController = async (req: Request, res: Response) => {
 
     res.cookie("tokenkeysecret", token, {
       httpOnly: true,
-      secure: true, // Solo en HTTPS
-      sameSite: "none", // Necesario para cross-site
-      domain: ".railway.app", // O tu dominio personalizado
-      maxAge: 24 * 60 * 60 * 1000, // 1 día
+      secure: true,
+      sameSite: "none",
+      // Usa el dominio específico del backend o omítelo si están en dominios diferentes
+      domain: "e-commerce-admin-production-8195.up.railway.app",
+      maxAge: 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({
