@@ -37,7 +37,9 @@ export const verifyToken = (
     ) as IPayload;
     req.userId = decoded._id;
     next();
-  } catch (error) {
-    res.status(403).json({ message: "Token inválido" });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      res.status(403).json(error.message);
+    }
   }
 };
