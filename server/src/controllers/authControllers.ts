@@ -9,13 +9,12 @@ export const loginController = async (req: Request, res: Response) => {
 
     res.cookie("tokenkeysecret", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-      domain:
-        process.env.NODE_ENV === "production" ? ".up.railway.app" : "localhost", // Añade esto
+      secure: process.env.NODE_ENV === "production", // ✅ true solo en producción
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // ✅ "none" en prod, "lax" en dev
       path: "/",
-      maxAge: 24 * 60 * 60 * 1000, // 1 día
+      maxAge: 1000 * 60 * 60 * 24 * 7,
     });
+
     res.status(200).json({
       success: true,
       message: "Ingresaste con exito!",
