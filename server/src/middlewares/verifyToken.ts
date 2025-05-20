@@ -33,7 +33,7 @@ export const verifyToken = (
   try {
     const decoded = jwt.verify(
       token,
-      env.secrect_key || "theSecret"
+      env.secrect_key || "thesecrectkey"
     ) as IPayload;
     req.userId = decoded._id;
     next();
