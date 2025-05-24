@@ -8,6 +8,7 @@ import { authRoutes } from "./routes/authRoutes";
 import { brandRoutes } from "./routes/brandRoutes";
 import { colorsRoutes } from "./routes/colorsRoutes";
 import cors from "cors";
+import { uploadRoutes } from "./routes/uploadRoutes";
 
 export const server = express();
 
@@ -34,3 +35,5 @@ server.use("/api", brandRoutes);
 server.use("/api", colorsRoutes);
 server.use("/api", categoryRoutes);
 server.use("/api/auth", authRoutes);
+server.use("/api", uploadRoutes);
+

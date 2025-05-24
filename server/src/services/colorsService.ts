@@ -37,3 +37,20 @@ export const getColorsService = async () => {
     }
   }
 };
+
+export const getColorByName = async (color: string) => {
+  try {
+    const getColor = await ColorModel.find({
+      where: {
+        name: color,
+      },
+      relations: ["name"],
+    });
+
+    return getColor;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+  }
+};
